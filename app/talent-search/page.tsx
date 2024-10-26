@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, Star, Loader2, SlidersHorizontal, ArrowUpDown, X } from 'lucide-react'
-
+import { Search, Star, Loader2, SlidersHorizontal, ArrowUpDown } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -291,7 +290,7 @@ export default function Component() {
             ) : (
               <div className="grid gap-6 md:grid-cols-2">
                 {aiRecommendations.length === 0 ? (
-                  <p className="text-center text-muted-foreground md:col-span-2">Click 'Get Recommendations' to see AI-suggested talents.</p>
+                  <p className="text-center text-muted-foreground md:col-span-2">Click &lsquo;Get Recommendations&apos; to see AI-suggested talents.</p>
                 ) : (
                   aiRecommendations.map(talent => (
                     <TalentCard key={talent.id} talent={talent} isRecommendation={true} />

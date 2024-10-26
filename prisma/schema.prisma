@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Talent {
+  id               String          @id @default(uuid())
+  firstName        String
+  lastName         String
+  email            String          @unique
+  phoneNumber      String?
+  location         String          // City or country for geo-targeted searches
+  title            String          // Current job title, e.g., Software Engineer
+  bio              String?         // Brief personal description or summary
+  experienceYears  Int             // Total years of experience
+  hourlyRate       Float?          // Optional hourly rate for freelancers
+  skills           String[]         // Relation to a list of skills
+  education        String?         // Educational background, e.g., "Bachelor's in Computer Science"
+  certifications   String[]        // List of certifications, e.g., "AWS Certified Developer"
+  availability     Availability    // Enum indicating availability (full-time, part-time, etc.)
+  portfolioUrl     String?         // Link to portfolio
+  workExperiences  WorkExperience[] // Relation to multiple work experiences
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+}
+
+model WorkExperience {
+  id             String   @id @default(uuid())
+  position       String   // Job title, e.g., "Senior Software Engineer"
+  companyName    String   // Name of the company or client
+  location       String?  // Location of the job (if remote, could be indicated as such)
+  startDate      DateTime // Start date of the job
+  endDate        DateTime? // End date (null if currently employed)
+  description    String?  // Job responsibilities and achievements
+  talentId       String   // Foreign key to link with Talent
+  talent         Talent   @relation(fields: [talentId], references: [id])
+
+  @@index([talentId])
+}
+
+enum Availability {
+  FULL_TIME
+  PART_TIME
+  FREELANCE
+  CONTRACT
+}
