@@ -14,6 +14,7 @@ model Talent {
   id              String       @id @default(uuid())
   firstName       String
   lastName        String
+  summary        String?
   email           String       @unique
   location        String // City or country for geo-targeted searches
   title           String // Current job title, e.g., Software Engineer

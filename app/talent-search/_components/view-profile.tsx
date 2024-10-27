@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { ExternalLink, Mail, MapPin, Clock, DollarSign, Briefcase, GraduationCap, Award } from 'lucide-react'
+import { ExternalLink, Mail, MapPin, Clock, DollarSign, Briefcase, GraduationCap, Award, Sparkles } from 'lucide-react'
 import { Talent } from '@prisma/client'
 
 
@@ -23,6 +23,17 @@ export default function ViewProfileSheet({ developer, children }: { developer: T
                     <SheetTitle>{developer.firstName} {developer.lastName}</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 space-y-6">
+                    <div className="space-y-2 relative">
+                        <h3 className="text-lg font-semibold">Summary</h3>
+                        <Badge variant="secondary" className="ml-auto absolute top-0 right-0">
+                            <Sparkles className="text-yellow-400  pr-3" size={20} />   AI Generated
+                        </Badge>
+
+                        <p className="">
+                            {developer.summary}
+                        </p>
+                    </div>
+                    <Separator />
                     <div className="space-y-2">
                         <h3 className="text-lg font-semibold">Contact Information</h3>
                         <div className="flex items-center space-x-2">
