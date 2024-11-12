@@ -1,6 +1,18 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Image from "next/image";
 import Link from "next/link";
+
+const experiments = [
+  {
+    href: "/talent-search",
+    title: "Talent Search",
+    description: "Using AI to recommend talent that fit the search description and summarize profile descriptions"
+  },
+  {
+    href: "/linkedin-gen",
+    title: "Linkedin Post Generator",
+    description: "Using AI to create better AI posts"
+  },
+]
 
 export default function Home() {
   return (
@@ -10,16 +22,18 @@ export default function Home() {
       <h1> AI Experiments</h1>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <Link href="/talent-search">
-            <Card>
-              <CardHeader>
-                Talent Search
-              </CardHeader>
-              <CardContent>
-                Using AI to recommend talent that fit the search description  and summarize profile descriptions
-              </CardContent>
-            </Card>
-          </Link>
+          {experiments.map((item, index) => (
+            <Link key={index} href={item.href}>
+              <Card>
+                <CardHeader>
+                  {item.title}
+                </CardHeader>
+                <CardContent>
+                  {item.description}
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
         </div>
       </main>
     </div>
